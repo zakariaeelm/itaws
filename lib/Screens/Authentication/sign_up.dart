@@ -31,7 +31,7 @@ class _SignUpState extends State<SignUp> {
             email: _userEmail,
             password: _userPassword
         );
-        print(userCredential);
+        const Home().launch(context);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           String ErrorMsg = e.message!;
@@ -55,7 +55,6 @@ class _SignUpState extends State<SignUp> {
             password: _userPassword
         );
         const Home().launch(context);
-        print(userCredential);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           print('No user found for that email.');

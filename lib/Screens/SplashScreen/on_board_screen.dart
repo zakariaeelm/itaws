@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maan_food/Screens/Authentication/sign_in.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../constant.dart';

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,12 +31,22 @@ class _HomeState extends State<Home> {
     OfferScreen(),
     ProfileScreen()
   ];
+
+  double getSnakeNavigationBarHeight(context){
+    if(Platform.isAndroid) {
+      return MediaQuery.of(context).size.width * 0.15;
+    }else if(Platform.isIOS) {
+      return MediaQuery.of(context).size.width * 0.24;
+    }
+    return 75.0;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedItemPosition),
       bottomNavigationBar: Container(
-        height: 95.0,
+        height: getSnakeNavigationBarHeight(context),
         decoration: BoxDecoration(
           color: kSecondaryColor,
           borderRadius: _borderRadius
