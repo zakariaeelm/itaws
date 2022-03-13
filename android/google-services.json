@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "580203992579",
+    "project_id": "itaws-85a22",
+    "storage_bucket": "itaws-85a22.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580203992579:android:3e205a7e95848bc75a6036",
+        "android_client_info": {
+          "package_name": "com.maantheme.maan_food"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "580203992579-u0k98e6pg225pbbjrvufrkab2a8pc04s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKniGkDttuDhnkBVN5hCISWx9cWICmWAM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "580203992579-u0k98e6pg225pbbjrvufrkab2a8pc04s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
