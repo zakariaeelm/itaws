@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:maan_food/GlobalComponents/button_global.dart';
-import 'package:maan_food/Screens/Home/home.dart';
-import 'package:maan_food/Screens/Home/home_screen.dart';
+import 'package:maan_food/Screens/Authentication/auth_services.dart';
 import 'package:maan_food/constant.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 
 class SignUp extends StatefulWidget {
@@ -22,51 +20,17 @@ class _SignUpState extends State<SignUp> {
   var _userPassword = '';
   var _userName = '';
 
-  void signUp() async{
+  void authenticate(bool authType) {
     final isValid = _formKey.currentState == null ? false : _formKey.currentState!.validate();
     if(isValid){
       _formKey.currentState!.save();
-      try {
-        UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: _userEmail,
-            password: _userPassword
-        );
-        const Home().launch(context);
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'weak-password') {
-          String ErrorMsg = e.message!;
-          print('The password provided is too weak.' + ErrorMsg);
-        } else if (e.code == 'email-already-in-use') {
-          print('The account already exists for that email.');
-        }
-      } catch (e) {
-        print(e);
+      if(_isLogIn) {
+        signInWithEmailAndPassword(_userEmail, _userPassword, context);
+      }else {
+        signUpWithEmailAndPassword(_userEmail, _userPassword, context);
       }
     }
   }
-
-  void signIn() async{
-    final isValid = _formKey.currentState == null ? false : _formKey.currentState!.validate();
-    if(isValid){
-      _formKey.currentState!.save();
-      try {
-        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-            email: _userEmail,
-            password: _userPassword
-        );
-        const Home().launch(context);
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
-          print('No user found for that email.');
-        } else if (e.code == 'wrong-password') {
-          print('Wrong password provided for that user.');
-        }
-      } catch (e) {
-        print(e);
-      }
-    }
-  }
-
 
   void popBack () {
     Navigator.of(context).pop();
@@ -120,7 +84,7 @@ class _SignUpState extends State<SignUp> {
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            'First, Create your Maan food account',
+                            'First, Create your account',
                             style: kTextStyle.copyWith(
                               color: kGreyTextColor,
                             ),
@@ -206,7 +170,9 @@ class _SignUpState extends State<SignUp> {
                           buttontext: _isLogIn ? 'Log In' : 'Sign Up',
                           buttonDecoration:
                           kButtonDecoration.copyWith(color: kMainColor),
-                          onPressed: _isLogIn ? signIn : signUp,
+                          onPressed: () {
+                            authenticate(_isLogIn);
+                            },
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 10.0, right: 10.0),

@@ -29,20 +29,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
             ),
             Column(
               children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: const Icon(
-                        Icons.arrow_back,
-                       color: kTitleColor,
-                      ).onTap((){
-                        Navigator.pop(context);
-                      }),
-                    ),
-                    Text('Categories',style: kTextStyle.copyWith(color: kTitleColor, fontSize: 18.0),),
-                  ],
-                ),
                 const SizedBox(
                   height: 40.0,
                 ),

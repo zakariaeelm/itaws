@@ -11,7 +11,7 @@ class OfferScreen extends StatefulWidget {
 }
 
 class _OfferScreenState extends State<OfferScreen> {
-  List<String> banner = ['images/banner1.png', 'images/banner2.png','images/banner1.png', 'images/banner2.png','images/banner1.png', 'images/banner2.png','images/banner1.png', 'images/banner2.png','images/banner1.png', 'images/banner2.png','images/banner1.png', 'images/banner2.png','images/banner1.png', 'images/banner2.png'];
+  List<String> banner = ['images/banner1.png'];
 
   @override
   Widget build(BuildContext context) {
@@ -30,24 +30,6 @@ class _OfferScreenState extends State<OfferScreen> {
             SingleChildScrollView(
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: const Icon(
-                          Icons.arrow_back,
-                          color: kTitleColor,
-                        ).onTap(() {
-                          Navigator.pop(context);
-                        }),
-                      ),
-                      Text(
-                        'Popular Deals',
-                        style: kTextStyle.copyWith(
-                            color: kTitleColor, fontSize: 18.0),
-                      ),
-                    ],
-                  ),
                   const SizedBox(
                     height: 40.0,
                   ),

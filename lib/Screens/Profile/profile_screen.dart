@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maan_food/Screens/Profile/edit_profile.dart';
 import 'package:maan_food/Screens/Profile/notification_screen.dart';
@@ -5,6 +7,7 @@ import 'package:maan_food/Screens/Profile/wish_list.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import '../../constant.dart';
+import '../Authentication/auth_services.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -14,6 +17,22 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final _photoUrl = FirebaseAuth.instance.currentUser != null
+      ? FirebaseAuth.instance.currentUser!.photoURL
+      : '';
+  final _userName = FirebaseAuth.instance.currentUser != null
+      ? FirebaseAuth.instance.currentUser!.displayName
+      : 'uknown';
+
+  double getListHeight(context) {
+    if (Platform.isAndroid) {
+      return MediaQuery.of(context).size.width * 0.2;
+    } else if (Platform.isIOS) {
+      return MediaQuery.of(context).size.width * 0.24;
+    }
+    return 50.0;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,26 +50,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             SingleChildScrollView(
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: const Icon(
-                          Icons.arrow_back,
-                          color: kTitleColor,
-                        ).onTap(() {
-                          Navigator.pop(context);
-                        }),
-                      ),
-                      Text(
-                        'Profile',
-                        style: kTextStyle.copyWith(
-                            color: kTitleColor, fontSize: 18.0),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 40.0,
+                  SizedBox(
+                    height: getListHeight(context),
                   ),
                   Container(
                     width: context.width(),
@@ -65,24 +66,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(
                           height: 20.0,
                         ),
-                        const CircleAvatar(
+                        CircleAvatar(
                           radius: 40.0,
-                          child: Image(
-                            image: AssetImage('images/round_logo.png'),
-                            fit: BoxFit.cover,
+                          child: ClipOval(
+                            child: Image.network(
+                              _photoUrl.toString(),
+                              width: 100.0,
+                              height: 100.0,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                         const SizedBox(
                           height: 10.0,
                         ),
                         Text(
-                          'Maan Team',
+                          _userName.toString(),
                           style: kTextStyle.copyWith(
                               color: kTitleColor, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          '+8801712022529',
-                          style: kTextStyle.copyWith(color: kGreyTextColor),
                         ),
                         const SizedBox(
                           height: 40.0,
@@ -108,11 +109,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       padding: const EdgeInsets.all(10.0),
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10.0),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
                                           color: Colors.white,
                                         ),
                                         child: ListTile(
-                                          onTap: (){
+                                          onTap: () {
                                             const EditProfile().launch(context);
                                           },
                                           leading: const CircleAvatar(
@@ -124,10 +126,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                           title: Text(
                                             'My Profile',
-                                            style:
-                                            kTextStyle.copyWith(color: kGreyTextColor),
+                                            style: kTextStyle.copyWith(
+                                                color: kGreyTextColor),
                                           ),
-                                          trailing: const Icon(Icons.arrow_forward_ios,color: kGreyTextColor,),
+                                          trailing: const Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: kGreyTextColor,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -135,7 +140,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       padding: const EdgeInsets.all(10.0),
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10.0),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
                                           color: Colors.white,
                                         ),
                                         child: ListTile(
@@ -148,10 +154,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                           title: Text(
                                             'Payment Settings',
-                                            style:
-                                            kTextStyle.copyWith(color: kGreyTextColor),
+                                            style: kTextStyle.copyWith(
+                                                color: kGreyTextColor),
                                           ),
-                                          trailing: const Icon(Icons.arrow_forward_ios,color: kGreyTextColor,),
+                                          trailing: const Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: kGreyTextColor,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -159,12 +168,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       padding: const EdgeInsets.all(10.0),
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10.0),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
                                           color: Colors.white,
                                         ),
                                         child: ListTile(
-                                          onTap: (){
-                                            const NotificationScreen().launch(context);
+                                          onTap: () {
+                                            const NotificationScreen()
+                                                .launch(context);
                                           },
                                           leading: const CircleAvatar(
                                             backgroundColor: Color(0xFFF5F5F5),
@@ -175,10 +186,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                           title: Text(
                                             'Notification',
-                                            style:
-                                            kTextStyle.copyWith(color: kGreyTextColor),
+                                            style: kTextStyle.copyWith(
+                                                color: kGreyTextColor),
                                           ),
-                                          trailing: const Icon(Icons.arrow_forward_ios,color: kGreyTextColor,),
+                                          trailing: const Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: kGreyTextColor,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -186,11 +200,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       padding: const EdgeInsets.all(10.0),
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10.0),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
                                           color: Colors.white,
                                         ),
                                         child: ListTile(
-                                          onTap: (){
+                                          onTap: () {
                                             const WishList().launch(context);
                                           },
                                           leading: const CircleAvatar(
@@ -202,10 +217,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                           title: Text(
                                             'Wishlist',
-                                            style:
-                                            kTextStyle.copyWith(color: kGreyTextColor),
+                                            style: kTextStyle.copyWith(
+                                                color: kGreyTextColor),
                                           ),
-                                          trailing: const Icon(Icons.arrow_forward_ios,color: kGreyTextColor,),
+                                          trailing: const Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: kGreyTextColor,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -213,7 +231,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       padding: const EdgeInsets.all(10.0),
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10.0),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
                                           color: Colors.white,
                                         ),
                                         child: ListTile(
@@ -226,10 +245,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                           title: Text(
                                             'Order Tracking',
-                                            style:
-                                            kTextStyle.copyWith(color: kGreyTextColor),
+                                            style: kTextStyle.copyWith(
+                                                color: kGreyTextColor),
                                           ),
-                                          trailing: const Icon(Icons.arrow_forward_ios,color: kGreyTextColor,),
+                                          trailing: const Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: kGreyTextColor,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -237,10 +259,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       padding: const EdgeInsets.all(10.0),
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10.0),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
                                           color: Colors.white,
                                         ),
                                         child: ListTile(
+                                          onTap: () async {
+                                            await signOut(context);
+                                          },
                                           leading: const CircleAvatar(
                                             backgroundColor: Color(0xFFF5F5F5),
                                             child: Icon(
@@ -250,10 +276,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                           title: Text(
                                             'Logout',
-                                            style:
-                                            kTextStyle.copyWith(color: kGreyTextColor),
+                                            style: kTextStyle.copyWith(
+                                                color: kGreyTextColor),
                                           ),
-                                          trailing: const Icon(Icons.arrow_forward_ios,color: kGreyTextColor,),
+                                          trailing: const Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: kGreyTextColor,
+                                          ),
                                         ),
                                       ),
                                     ),

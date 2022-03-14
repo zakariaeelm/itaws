@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "580203992579-4g010d7tlp6npreer2f3qtp7kauvbdqv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.maantheme.maan_food",
+            "certificate_hash": "894b41c54f5e0f66fa306b803c0d772775d8de87"
+          }
+        },
+        {
           "client_id": "580203992579-u0k98e6pg225pbbjrvufrkab2a8pc04s.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "580203992579-u0k98e6pg225pbbjrvufrkab2a8pc04s.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "580203992579-t6t30khb3ia8hpuhcektbuuttl0keuha.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.maantheme.maanFood"
+              }
             }
           ]
         }

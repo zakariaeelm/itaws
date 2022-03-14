@@ -31,24 +31,6 @@ class _OrderScreenState extends State<OrderScreen> {
             SingleChildScrollView(
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: const Icon(
-                          Icons.arrow_back,
-                          color: kTitleColor,
-                        ).onTap(() {
-                          Navigator.pop(context);
-                        }),
-                      ),
-                      Text(
-                        'Orders',
-                        style: kTextStyle.copyWith(
-                            color: kTitleColor, fontSize: 18.0),
-                      ),
-                    ],
-                  ),
                   const SizedBox(
                     height: 40.0,
                   ),
