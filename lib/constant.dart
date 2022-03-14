@@ -58,3 +58,24 @@ List<String> tableList = [
   'Table 6'
 ];
 
+List<Map<String, dynamic>> sliderList = [
+  {
+    "icon": 'images/onboard1.png',
+    "title": 'Welcome to Maan Food Restaurant',
+    "description":
+    'Lorem ipsum dolor sit amet, conse cte tur adip is cing elit. Sed mattis.',
+  },
+  {
+    "icon": 'images/onboard2.png',
+    "title": 'Choose Your Favorite Food',
+    "description":
+    'Lorem ipsum dolor sit amet, conse cte tur adip is cing elit. Sed mattis.',
+  },
+  {
+    "icon": 'images/onboard3.png',
+    "title": 'Get your Parcel More Safely',
+    "description":
+    'Lorem ipsum dolor sit amet, conse cte tur adip is cing elit. Sed mattis.',
+  },
+];
+

@@ -7,7 +7,7 @@ import 'package:maan_food/Screens/Profile/wish_list.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import '../../constant.dart';
-import '../Authentication/auth_services.dart';
+import '../../services/auth_services.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
