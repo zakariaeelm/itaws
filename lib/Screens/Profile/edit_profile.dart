@@ -31,8 +31,7 @@ class _EditProfileState extends State<EditProfile> {
               children: [
                 Expanded(
                   child: GestureDetector(
-                    onTap: (){
-                    },
+                    onTap: () {},
                     child: Padding(
                       padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                       child: Container(
@@ -46,7 +45,10 @@ class _EditProfileState extends State<EditProfile> {
                           children: [
                             Text(
                               'Update Profile',
-                              style: kTextStyle.copyWith(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 18.0),
+                              style: kTextStyle.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18.0),
                             ),
                           ],
                         ),
@@ -100,78 +102,85 @@ class _EditProfileState extends State<EditProfile> {
                           topRight: Radius.circular(30.0)),
                       color: Colors.white,
                     ),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        Stack(
-                          children: [
-                            const CircleAvatar(
-                              radius: 60.0,
-                              child: Image(image: AssetImage('images/round_logo.png'),fit: BoxFit.cover,),
-                              backgroundColor: kTitleColor,
-                            ),
-                            Positioned(
-                              bottom: 0.0,
-                              right: 0.0,
-                              child: Image.asset('images/editpicicon.png'),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                          child: AppTextField(
-                            textFieldType: TextFieldType.NAME,
-                            decoration: const InputDecoration(
-                              labelText: 'Full Name',
-                              hintText: 'Prince mahmud',
-                              border: OutlineInputBorder(),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          Stack(
+                            children: [
+                              const CircleAvatar(
+                                radius: 60.0,
+                                child: Image(
+                                  image: AssetImage('images/round_logo.png'),
+                                  fit: BoxFit.cover,
+                                ),
+                                backgroundColor: kTitleColor,
+                              ),
+                              Positioned(
+                                bottom: 0.0,
+                                right: 0.0,
+                                child: Image.asset('images/editpicicon.png'),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(left: 20.0, right: 20.0),
+                            child: AppTextField(
+                              textFieldType: TextFieldType.NAME,
+                              decoration: const InputDecoration(
+                                labelText: 'Full Name',
+                                hintText: 'Prince mahmud',
+                                border: OutlineInputBorder(),
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: SizedBox(
-                            height: 60.0,
-                            child: AppTextField(
-                              textFieldType: TextFieldType.PHONE,
-                              controller: TextEditingController(),
-                              enabled: true,
-                              onChanged: (value) {
-                                setState(() {});
-                              },
-                              decoration: InputDecoration(
-                                labelText: 'Phone Number',
-                                hintText: '1767 432556',
-                                border: const OutlineInputBorder(),
-                                prefix: CountryCodePicker(
-                                  padding: EdgeInsets.zero,
-                                  onChanged: print,
-                                  initialSelection: 'BD',
-                                  showFlag: true,
-                                  showDropDownButton: true,
-                                  alignLeft: false,
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: SizedBox(
+                              height: 60.0,
+                              child: AppTextField(
+                                textFieldType: TextFieldType.PHONE,
+                                controller: TextEditingController(),
+                                enabled: true,
+                                onChanged: (value) {
+                                  setState(() {});
+                                },
+                                decoration: InputDecoration(
+                                  labelText: 'Phone Number',
+                                  hintText: '1767 432556',
+                                  border: const OutlineInputBorder(),
+                                  prefix: CountryCodePicker(
+                                    padding: EdgeInsets.zero,
+                                    onChanged: print,
+                                    initialSelection: 'BD',
+                                    showFlag: true,
+                                    showDropDownButton: true,
+                                    alignLeft: false,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                          child: AppTextField(
-                            textFieldType: TextFieldType.NAME,
-                            decoration: const InputDecoration(
-                              labelText: 'Address',
-                              hintText: '110/2 Green Road',
-                              border: OutlineInputBorder(),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(left: 20.0, right: 20.0),
+                            child: AppTextField(
+                              textFieldType: TextFieldType.NAME,
+                              decoration: const InputDecoration(
+                                labelText: 'Address',
+                                hintText: '110/2 Green Road',
+                                border: OutlineInputBorder(),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

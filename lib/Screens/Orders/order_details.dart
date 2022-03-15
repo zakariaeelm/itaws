@@ -56,6 +56,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                       color: Colors.white,
                     ),
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         const SizedBox(
                           height: 20.0,

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:maan_food/Screens/Authentication/sign_in.dart';
 import 'package:maan_food/Screens/Home/home.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -83,9 +84,10 @@ void signUpWithEmailAndPassword(String userEmail, String userPassword, BuildCont
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         String ErrorMsg = e.message!;
-        print('The password provided is too weak.' + ErrorMsg);
+        printSnackBarErrorMessage(context, 'The password provided is too weak.' + ErrorMsg);
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        printSnackBarErrorMessage(context, 'The account already exists for that email.');
+
       }
     } catch (e) {
       print(e);
@@ -101,11 +103,20 @@ void signInWithEmailAndPassword(String userEmail, String userPassword, BuildCont
       const Home().launch(context);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        printSnackBarErrorMessage(context, 'No user found for that email. try and sign Up');
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
+        printSnackBarErrorMessage(context, 'Wrong password or email provided');
       }
     } catch (e) {
       print(e);
     }
+}
+
+
+ScaffoldFeatureController<SnackBar, SnackBarClosedReason> printSnackBarErrorMessage(context, errorText) {
+  return ScaffoldMessenger.of(context).showSnackBar(SnackBar (
+      content: Text(errorText),
+      backgroundColor: Theme.of(context).errorColor
+  ));
 }
