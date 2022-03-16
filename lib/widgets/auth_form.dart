@@ -28,9 +28,9 @@ class _AuthFormState extends State<AuthForm> {
     if (isValid) {
       _formKey.currentState!.save();
       if (_isLogIn) {
-        signInWithEmailAndPassword(_userEmail, _userPassword, context);
+        signInWithEmailAndPassword(_userEmail.trim(), _userPassword.trim(), context);
       } else {
-        signUpWithEmailAndPassword(_userEmail, _userPassword, context);
+        signUpWithEmailAndPassword(_userEmail.trim(), _userPassword.trim(), context);
       }
     }
   }
@@ -83,7 +83,7 @@ class _AuthFormState extends State<AuthForm> {
                       validator: RequiredValidator(errorText: "* Required"),
                       decoration: const InputDecoration(
                         labelText: 'Full Name',
-                        hintText: 'firstName LastName',
+                        hintText: 'Jhon Doe',
                         border: OutlineInputBorder(),
                       ),
                       onSaved: (value) {

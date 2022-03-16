@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:maan_food/widgets/loader/loader_widget.dart';
 import 'firebase_options.dart';
 
 import 'Screens/SplashScreen/splash_screen.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         // Add the line below to get horizontal sliding transitions for routes.
         pageTransitionsTheme: const PageTransitionsTheme(builders: {TargetPlatform.android: CupertinoPageTransitionsBuilder(),}),
       ),
+      builder: LoadingScreen.init(),
       title: 'Maan LMS',
       initialRoute: '/',
       routes: {
