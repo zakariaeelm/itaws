@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:maan_food/Screens/Authentication/sign_in.dart';
 import 'package:maan_food/Screens/Home/home.dart';
 import 'package:maan_food/services/utils.dart';
+import 'package:maan_food/widgets/map.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';

@@ -8,6 +8,7 @@ import 'package:maan_food/Screens/Home/category_screen.dart';
 import 'package:maan_food/Screens/Home/product_screen.dart';
 import 'package:maan_food/Screens/Home/table_booking.dart';
 import 'package:maan_food/constant.dart';
+import 'package:maan_food/widgets/map.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import 'product_details.dart';
@@ -33,109 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Stack(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: Container(
-                      padding: EdgeInsets.zero,
-                      width: MediaQuery.of(context).size.width,
-                      height: 240.0,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(
-                              'images/homeheader.png',
-                            ),
-                            fit: BoxFit.cover),
-                      ),
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 20.0,
-                          ),
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      'Maan Food',
-                                      style: kTextStyle.copyWith(
-                                          color: kTitleColor,
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    RichText(
-                                      text: TextSpan(
-                                        children: [
-                                          const WidgetSpan(
-                                            child: Icon(
-                                              Icons.location_on_outlined,
-                                              color: Colors.red,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: "Dhaka, Bangladesh",
-                                            style: kTextStyle.copyWith(
-                                                color: kGreyTextColor),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const Spacer(),
-                              const CircleAvatar(
-                                backgroundColor: Color(0xFFFED6A9),
-                                radius: 20.0,
-                                child: Icon(
-                                  Icons.notifications_none_outlined,
-                                  color: kMainColor,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 20.0,
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 4,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color: const Color(0xFFF7F5F2),
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    child: AppTextField(
-                                      textFieldType: TextFieldType.NAME,
-                                      decoration: const InputDecoration(
-                                        prefixIcon: Icon(
-                                          Icons.search,
-                                          color: kTitleColor,
-                                        ),
-                                        border: InputBorder.none,
-                                        fillColor: Color(0xFFF7F5F2),
-                                        contentPadding: EdgeInsets.all(10.0),
-                                        hintText: 'Search',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const Expanded(
-                                    flex: 1,
-                                    child: Image(
-                                        image:
-                                            AssetImage('images/filter.png'))),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                 // const HomeMap(),
                   Positioned(
                     top: 220,
                     left: 30.0,

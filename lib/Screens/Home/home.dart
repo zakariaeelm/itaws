@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:maan_food/Screens/Checkout/cart_screen.dart';
-import 'package:maan_food/Screens/Home/offer_screen.dart';
 import 'package:maan_food/Screens/Orders/order_screen.dart';
 import 'package:maan_food/Screens/Profile/profile_screen.dart';
 import 'package:maan_food/constant.dart';
+import 'package:maan_food/widgets/map.dart';
 
-import 'home_screen.dart';
+import 'offer_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -25,10 +25,9 @@ class _HomeState extends State<Home> {
   );
   int _selectedItemPosition = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-    HomeScreen(),
+    HomeMap(),
     OrderScreen(),
     CartScreen(),
-    OfferScreen(),
     ProfileScreen()
   ];
 
@@ -70,8 +69,6 @@ class _HomeState extends State<Home> {
                 icon: Icon(FontAwesomeIcons.truckPickup), label: 'Order'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.shopping_cart_outlined), label: 'Cart'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.wallet_giftcard_rounded), label: 'Offer'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.person_outline_rounded), label: 'Profile')
           ],

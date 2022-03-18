@@ -1,8 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
 import '../../constant.dart';
 import 'on_board_screen.dart';
+import '../../services/geo_location.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -24,8 +26,11 @@ class _SplashScreenState extends State<SplashScreen> {
     defaultBlurRadius = 10.0;
     defaultSpreadRadius = 0.5;
 
+    Position _currentPosition = await determinePosition();
+    context.read<PositionProvider>().setCurrentPosition(_currentPosition);
+
     finish(context);
-    const OnBoard().launch(context,isNewTask: true);
+    const OnBoard().launch(context, isNewTask: true);
   }
 
   @override
