@@ -1,17 +1,14 @@
 import 'dart:typed_data';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'dart:ui' as ui;
-import 'dart:io';
 
-import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
-import 'package:image/image.dart' as img;
 import 'dart:async';
-import 'dart:math';
 import '../widgets/loader/loading_provider.dart';
 
 
@@ -78,3 +75,4 @@ Canvas _performCircleCrop(ui.Image image, Size size, Canvas canvas) {
   canvas.drawImage(image, Offset(drawImageWidth, drawImageHeight), Paint());
   return canvas;
 }
+

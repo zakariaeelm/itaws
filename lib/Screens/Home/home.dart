@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,9 +8,10 @@ import 'package:maan_food/Screens/Checkout/cart_screen.dart';
 import 'package:maan_food/Screens/Orders/order_screen.dart';
 import 'package:maan_food/Screens/Profile/profile_screen.dart';
 import 'package:maan_food/constant.dart';
+import 'package:maan_food/services/user_provider.dart';
 import 'package:maan_food/widgets/map.dart';
+import 'package:provider/provider.dart';
 
-import 'offer_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -66,9 +68,9 @@ class _HomeState extends State<Home> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.home_outlined), label: 'Home'),
             BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.truckPickup), label: 'Order'),
+                icon: Icon(FontAwesomeIcons.shoppingBasket), label: 'Order'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart_outlined), label: 'Cart'),
+                icon: Icon(Icons.shopping_bag_outlined), label: 'Cart'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.person_outline_rounded), label: 'Profile')
           ],

@@ -45,7 +45,7 @@ Future<Position> determinePosition() async {
 
 // Manage loading state with the provider lib
 class PositionProvider with ChangeNotifier {
-  late final Position _position;
+  late Position _position;
   Position get position => _position;
   setCurrentPosition(Position currentPosition) {
     _position = currentPosition;

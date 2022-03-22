@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:maan_food/services/geo_location.dart';
+import 'package:maan_food/services/user_provider.dart';
 import 'package:maan_food/widgets/loader/loader_widget.dart';
 import 'package:maan_food/widgets/loader/loading_provider.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,8 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider<LoadingProvider>(
               create: (_) => LoadingProvider()),
+          ChangeNotifierProvider<CurrentUserProvider>(
+              create: (_) => CurrentUserProvider()),
           ChangeNotifierProvider<PositionProvider>(
               create: (_) => PositionProvider()),
         ],

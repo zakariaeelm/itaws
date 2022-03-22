@@ -4,7 +4,9 @@ import 'package:maan_food/services/auth_services.dart';
 import 'package:maan_food/GlobalComponents/button_global.dart';
 import 'package:flutter/gestures.dart';
 import 'package:maan_food/constant.dart';
+import 'package:maan_food/widgets/user_type_toggler.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:maan_food/constant.dart';
 
 class AuthForm extends StatefulWidget {
   const AuthForm({Key? key}) : super(key: key);
@@ -19,6 +21,7 @@ class _AuthFormState extends State<AuthForm> {
   var _userEmail = '';
   var _userPassword = '';
   var _userName = '';
+  var _userType = 'consumer';
 
   void authenticate(bool authType) {
     final isValid = _formKey.currentState == null
@@ -28,9 +31,11 @@ class _AuthFormState extends State<AuthForm> {
     if (isValid) {
       _formKey.currentState!.save();
       if (_isLogIn) {
-        signInWithEmailAndPassword(_userEmail.trim(), _userPassword.trim(), context);
+        signInWithEmailAndPassword(
+            _userEmail.trim(), _userPassword.trim(), context);
       } else {
-        signUpWithEmailAndPassword(_userEmail.trim(), _userPassword.trim(), context);
+        signUpWithEmailAndPassword(
+            _userEmail.trim(), _userPassword.trim(), _userName, _userType, context);
       }
     }
   }
@@ -112,6 +117,21 @@ class _AuthFormState extends State<AuthForm> {
                     },
                   ),
                 ),
+                if (!_isLogIn)
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: AnimatedToggle(
+                      values: const ['Consumer', 'Provider'],
+                      onToggleCallback: (value) {
+                        setState(() {
+                          _userType = value == 0 ? 'consumer' : 'provider';
+                        });
+                      },
+                      buttonColor: kMainColor,
+                      backgroundColor: kSecondaryColor,
+                      textColor: kDarkWhite,
+                    ),
+                  ),
                 ButtonGlobal(
                   buttontext: _isLogIn ? 'Log In' : 'Sign Up',
                   buttonDecoration:

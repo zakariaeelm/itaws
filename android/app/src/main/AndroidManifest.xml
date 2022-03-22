@@ -9,9 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <!-- Permissions options for the `INTERNET` -->
     <uses-permission android:name="android.permission.INTERNET"/>
-    <!-- Add your Google Maps API key here -->
-    <meta-data android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyANyValx4zFVsRkFJQua87HCUE_iHlTTe0"/>
+
     <application
         android:label="maan_food"
         android:icon="@mipmap/ic_launcher">
@@ -40,6 +38,7 @@
               android:name="io.flutter.embedding.android.SplashScreenDrawable"
               android:resource="@drawable/launch_background"
               />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -50,6 +49,9 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- Add your Google Maps API key here -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyANyValx4zFVsRkFJQua87HCUE_iHlTTe0"/>
 
        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>

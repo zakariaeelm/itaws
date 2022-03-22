@@ -1,11 +1,14 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maan_food/Screens/Profile/edit_profile.dart';
 import 'package:maan_food/Screens/Profile/notifications/notification_screen.dart';
 import 'package:maan_food/Screens/Profile/profile_section.dart';
 import 'package:maan_food/Screens/Profile/wish_list.dart';
+import 'package:maan_food/services/user_provider.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
 
 import '../../constant.dart';
 import '../../services/auth_services.dart';
@@ -18,14 +21,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final _photoUrl = FirebaseAuth.instance.currentUser != null
-      ? FirebaseAuth.instance.currentUser!.photoURL
-      : '';
-  final _userName = FirebaseAuth.instance.currentUser != null
-      ? FirebaseAuth.instance.currentUser!.displayName
-      : 'uknown';
-
   double getListHeight(context) {
+
     if (Platform.isAndroid) {
       return MediaQuery.of(context).size.width * 0.2;
     } else if (Platform.isIOS) {
@@ -36,6 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final UserModel _currentUser = Provider.of<CurrentUserProvider>(context, listen: false).currentUser;
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -70,19 +68,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         CircleAvatar(
                           radius: 40.0,
                           child: ClipOval(
-                            child: Image.network(
-                              _photoUrl.toString(),
+                            child: _currentUser.imageUrl != '' && _currentUser.imageUrl != null ?
+                              Image.network(
+                              _currentUser.imageUrl!,
                               width: 100.0,
                               height: 100.0,
                               fit: BoxFit.cover,
-                            ),
+                            ): Image.asset('images/unknown_user.png'),
                           ),
                         ),
                         const SizedBox(
                           height: 10.0,
                         ),
                         Text(
-                          _userName.toString(),
+                          _currentUser.name,
                           style: kTextStyle.copyWith(
                               color: kTitleColor, fontWeight: FontWeight.bold),
                         ),

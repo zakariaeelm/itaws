@@ -1,6 +1,5 @@
-import 'dart:typed_data';
+import 'dart:async';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
@@ -10,6 +9,8 @@ import 'package:maan_food/services/geo_location.dart';
 import 'package:maan_food/services/utils.dart';
 import 'package:provider/provider.dart';
 
+import '../services/user_provider.dart';
+
 class HomeMap extends StatefulWidget {
   const HomeMap({Key? key}) : super(key: key);
 
@@ -18,17 +19,14 @@ class HomeMap extends StatefulWidget {
 }
 
 class _HomeMapState extends State<HomeMap> {
-  late GoogleMapController mapController; //controller for Google map
+  late  GoogleMapController _mapcontroller; //controller for Google map
   final Set<Marker> _markers = {}; //markers for google map
   late LatLng _showLocation;
   late String _mapStyle;
+
   @override
   void initState() {
-    WidgetsBinding.instance?.addPostFrameCallback((_) async {
-      getMarkers();
-    });
     super.initState();
-
     rootBundle.loadString('images/map_style.txt').then((string) {
       _mapStyle = string;
     });
@@ -36,11 +34,11 @@ class _HomeMapState extends State<HomeMap> {
 
   @override
   Widget build(BuildContext context) {
+
     final Position _position =
         Provider.of<PositionProvider>(context, listen: false).position;
-    _showLocation = LatLng(
-        _position.latitude, _position.longitude); //location to show in map
-
+    _showLocation = LatLng(_position.latitude, _position.longitude);
+    getMarkers(context);
     Set<Circle> _circles = {
       Circle(
         circleId: const CircleId(''),
@@ -81,8 +79,8 @@ class _HomeMapState extends State<HomeMap> {
                   onMapCreated: (controller) {
                     //method called when map is created
                     setState(() {
-                      mapController = controller;
-                      mapController.setMapStyle(_mapStyle);
+                      _mapcontroller = controller;
+                      _mapcontroller.setMapStyle(_mapStyle);
                     });
                   }),
             ),
@@ -101,11 +99,17 @@ class _HomeMapState extends State<HomeMap> {
     );
   }
 
-  void getMarkers() async {
-    final userPhoto = FirebaseAuth.instance.currentUser!.photoURL;
-    //final Uint8List markerIcon = await getBytesFromNetworkUrl(userPhoto!, 100);
-    final iconMarker = await resizeAndCircle(userPhoto!, 100);
-
+  Future<void> getMarkers(BuildContext context) async {
+    final userPhoto = Provider.of<CurrentUserProvider>(context, listen: false)
+        .currentUser
+        .imageUrl;
+    late BitmapDescriptor iconMarker;
+    if (userPhoto != null && userPhoto != '') {
+      iconMarker = await resizeAndCircle(userPhoto, 100);
+    }else{
+      iconMarker= BitmapDescriptor.defaultMarker;
+    }
+    if(!mounted) return;
     //markers to place on map
     setState(() {
       _markers.add(Marker(
@@ -117,14 +121,16 @@ class _HomeMapState extends State<HomeMap> {
           title: 'Marker Title First ',
           snippet: 'My Custom Subtitle',
         ),
-        icon: iconMarker, //Icon for Marker
+        icon: userPhoto != ''
+            ? iconMarker
+            : BitmapDescriptor.defaultMarker, //Icon for Marker
       ));
 
-      _markers.add(Marker(
+      _markers.add(const Marker(
         //add second marker
-        markerId: MarkerId(const LatLng(37.804834, -122.428417).toString()),
-        position: const LatLng(37.804834, -122.428417), //position of marker
-        infoWindow: const InfoWindow(
+        markerId: MarkerId('idSecondMarker'),
+        position: LatLng(37.804834, -122.428417), //position of marker
+        infoWindow: InfoWindow(
           //popup info
           title: 'Marker Title default ',
           snippet: 'My  default maker',
@@ -133,5 +139,11 @@ class _HomeMapState extends State<HomeMap> {
       ));
       //add more markers here
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    rootBundle.clear();
   }
 }

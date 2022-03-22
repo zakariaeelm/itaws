@@ -8,7 +8,6 @@ import 'package:maan_food/Screens/Home/category_screen.dart';
 import 'package:maan_food/Screens/Home/product_screen.dart';
 import 'package:maan_food/Screens/Home/table_booking.dart';
 import 'package:maan_food/constant.dart';
-import 'package:maan_food/widgets/map.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import 'product_details.dart';

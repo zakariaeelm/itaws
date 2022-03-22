@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -54,8 +57,7 @@ class _SocialSignInState extends State<SocialSignIn> {
                         ),
                         Text(
                           'Continue With Google',
-                          style: kTextStyle.copyWith(
-                              color: kTitleColor),
+                          style: kTextStyle.copyWith(color: kTitleColor),
                         ),
                       ],
                     ),
