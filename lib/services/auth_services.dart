@@ -7,14 +7,11 @@ import 'package:maan_food/Screens/Authentication/sign_in.dart';
 import 'package:maan_food/Screens/Home/home.dart';
 import 'package:maan_food/services/user_provider.dart';
 import 'package:maan_food/services/utils.dart';
-import 'package:maan_food/widgets/map.dart';
-import 'package:nb_utils/nb_utils.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:provider/provider.dart';
 
-String _userType = '';
 
 Future<void> showDialogUserType(
     BuildContext ctx, Map<String, dynamic> userData) async {
@@ -23,8 +20,8 @@ Future<void> showDialogUserType(
           context: ctx,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text('AlertDialog Title'),
-              content: const Text('AlertDialog description'),
+              title: const Text('User type'),
+              content: const Text('Please choose which user type are you'),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
